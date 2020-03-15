@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="btnMinus" class="btn btn-default"  ><i class="fas fa-minus"></i></button>
+                           <input id="countEl" type="text" class="form-control text-center" value="1">
+                           <button id="btnPlus" class="btn btn-default" ><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$ <span id="currentPrice">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="btn_Minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="countEleTwo" type="text" class="form-control text-center" value="1">
+                           <button id="btn_Plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="current_Price">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="subtotal">1,219</span></h5>
+                        <h5>$ <span id="tax">5</span></h5>
+                        <h5>$ <span id="totalAmount">1,219</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button id="checkoutBtn" type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <script type="text/javascript">
+      var count = 1;
+      var countNo=1;
+      var priceEle ;
+      var priceElement;
+      var subtotalPrice;
+      const countElement = document.getElementById("countEl");
+      const price=document.getElementById("currentPrice").innerText;
+      const elementPrice=parseFloat(price);
+      var countEle = document.getElementById("countEleTwo");
+      const currentPri=document.getElementById("current_Price").innerText;
+      const element_price=parseFloat(currentPri);
+      const subTotal=document.getElementById("subtotal").innerText;
+      const currentSubtotal=parseFloat(subTotal);
+      const taxAmt=document.getElementById("tax").innerText;
+      const tax=parseFloat(taxAmt);
+      const total=document.getElementById("totalAmount").innerText;
+      const current_total=parseFloat(total);
+      
+   const plusButton=document.getElementById("btnPlus");
+   plusButton.addEventListener("click",function(){
+      count++;
+      countElement.value = count;
+      priceEle= count * elementPrice;
+      document.getElementById("currentPrice").innerText=priceEle;
+   })
+   const minusButton=document.getElementById("btnMinus");
+   minusButton.addEventListener("click",function(){
+      if (count > 1) {
+         count--;
+      countElement.value = count;
+      priceEle= count *elementPrice;
+      document.getElementById("currentPrice").innerText=priceEle;
+      }
+   })
+   const plusBtn=document.getElementById("btn_Plus");
+   plusBtn.addEventListener("click",function(){
+      countNo++;
+      countEle.value = countNo;
+      priceElement= countNo * element_price;
+      document.getElementById("current_Price").innerText=priceElement;
+      
+   })
+   const minusBtn=document.getElementById("btn_Minus");
+   minusBtn.addEventListener("click",function(){
+      if(countNo > 1){
+         countNo--;
+      countEle.value = countNo;
+      priceElement= countNo *element_price;
+      document.getElementById("current_Price").innerText=priceElement;
+      }
+   })
+   const checkOutBtn=document.getElementById("checkoutBtn");
+   checkOutBtn.addEventListener("click",function(){
+      var subtotalPrice=priceEle + priceElement + currentSubtotal-1;
+      document.getElementById("subtotal").innerText=subtotalPrice;
+      document.getElementById("tax").innerText=tax;
+      var totalPriceAmount= subtotalPrice + tax;
+      document.getElementById("totalAmount").innerText=totalPriceAmount;
+   })
+
+</script>
+</body>
+
+</html>
